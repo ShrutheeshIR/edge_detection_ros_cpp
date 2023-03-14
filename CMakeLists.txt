@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   message_filters
   pcl_conversions
+  visualization_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -157,6 +158,7 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRS}
 )
+
 
 
 add_executable(edge_detection_service src/edge_detection_service.cpp )

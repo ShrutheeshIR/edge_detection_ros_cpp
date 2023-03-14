@@ -15,6 +15,9 @@
 
 #include <sensor_msgs/PointCloud2.h>
 #include <pcl_conversions/pcl_conversions.h>
+#include "visualization_msgs/Marker.h"
+#include "visualization_msgs/MarkerArray.h"
+
 
 class EdgeDetectionNode
 {
@@ -36,13 +39,15 @@ class EdgeDetectionNode
         // void edge_detection_image_callback(const sensor_msgs::ImageConstPtr& msg);
         void message_callback(const sensor_msgs::ImageConstPtr& image, const sensor_msgs::ImageConstPtr& depth_image);
         void camera_info_callback(const sensor_msgs::CameraInfoConstPtr& camInfo_msg);
-
+        visualization_msgs::Marker place_marker(double x, double y, double z, int idx);
 
 
         // void message_callback(const sensor_msgs::ImageConstPtr& image, const sensor_msgs::ImageConstPtr& depth_image, const sensor_msgs::CameraInfoConstPtr& cam_info);
         
         ros::Publisher edges_image_pub;
         ros::Publisher pc_pub;
+
+        ros::Publisher marker_pub;
 
         cv::Mat K; //camera intrinsics
 

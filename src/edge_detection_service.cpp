@@ -16,7 +16,7 @@ bool EdgeDetectionService::edge_detection(edge_detection::DetectEdges::Request &
     det->findEdges(cv_img, edge_points);
 
     cv::Mat dst_img;
-    // det->display_edges(cv_img, "/neura/src/edge_detection_ros_cpp/output/edges.png", edge_points, dst_img);
+    det->display_edges(cv_img, edge_points, dst_img);
 
 
     geometry_msgs::Point pt;

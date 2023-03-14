@@ -42,6 +42,6 @@ class EdgeDetector
 		EdgeDetector(bool show_debug, LinesMethod line_detection_method);
 		void findEdges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_points);
 		void convertGrayscale(cv::Mat& src_img, cv::Mat& dst_img);
-		void display_edges(cv::Mat &src_img, std::string filename, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img);
+		void display_edges(cv::Mat &src_img, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img);
 };
 
