@@ -109,3 +109,5 @@ Example output presented here.
 
 ## ROS markers visualization
 The 3D points are then sent to a `place_markers` function within the same files to create a marker with the given position, and `root_link` as frame_id. (Not sure if this is the right one, as the results seem poor). They are then pushed to a marker array and published as a viz_marker onto the topic `viz_marker_array`, as green markers. The results are quite poor again, and it is because of the previous issue. 
+
+Take a look at `output/all_combined.flv` for the full performance (part 4)
