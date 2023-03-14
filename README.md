@@ -35,9 +35,9 @@ rosbag play ...
 
 
 
-## Edge detector libraru:
+# Edge detector library:
 
-#### Relevant files:
+### Relevant files:
 1. `EdgeDetector.cpp` and `EdgeDetector.hpp`.
 
 A simple canny edge detector from Opencv has been used to threshold the image and obtain good edges in an image, using appropriate threshold values. After a binary image is obtained, we use one of the following two:
@@ -62,14 +62,14 @@ Outputs:
 4. ![alt img1](output/Image_4.png)
 5. ![alt img1](output/Image_5.jpg)
 
-Observations:
+### Observations:
 Although contour seems to look better, it tends to miss some of the internal squares, and it does not have any notion of straight lines, while hough lines transform can provide geometrically consistent lines, which are more useful in some tasks. With more tuning, perhaps the performance can be improved. The image is first blurred and morphological operations are first performed to highlight the corners better.
 
 The library has been build using catkin and Cmake.
 
 
 
-## ROS Service
+# ROS Service
 
 Relevant files are : 
 1. edge_detection_service.cpp
@@ -82,7 +82,7 @@ A ROS service exposes the library functionality has been created as `DetectEdges
 
 Adjust the directory name in `src/edge_detection_service_client.cpp`
 
-## ROS Callback node
+# ROS Callback node
 
 Relevant files
 1. edge_detection_node.cpp
@@ -107,7 +107,7 @@ Example output presented here.
 
 
 
-## ROS markers visualization
+# ROS markers visualization
 The 3D points are then sent to a `place_markers` function within the same files to create a marker with the given position, and `root_link` as frame_id. (Not sure if this is the right one, as the results seem poor). They are then pushed to a marker array and published as a viz_marker onto the topic `viz_marker_array`, as green markers. The results are quite poor again, and it is because of the previous issue. 
 
 Take a look at `output/all_combined.flv` for the full performance (part 4)
