@@ -32,7 +32,7 @@ void EdgeDetector::findEdges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_po
 	cv::Canny(thresh, edges_image, 10, 250);
 	if(params.show_debug_image)
 	{
-		cv::imwrite("/home/olorin/Desktop/Neura/edge_detection_ros_challenge/edge_detection_ros/src/edge_detection/output/edges_image.png", edges_image);
+		cv::imwrite("/src_dir/src/edge_detection/output/edges_image.png", edges_image);
 	}
 
 	if(params.detect_lines_method == Hough)

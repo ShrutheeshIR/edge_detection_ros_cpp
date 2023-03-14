@@ -20,7 +20,7 @@ int main(int argc, char ** argv)
     edge_detection::DetectEdges srv;
 
 
-    std::string path = "/neura/src/edge_detection_ros_cpp/data/";
+    std::string path = "/src_dir/src/edge_detection_ros_cpp/data/";
     for (const auto & entry : fs::directory_iterator(path))
     {
 
@@ -44,7 +44,7 @@ int main(int argc, char ** argv)
             cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(srv.response.edge_output.img, sensor_msgs::image_encodings::RGB8);
             cv::Mat cv_img = cv::Mat(cv_ptr -> image);
             std::string filename = entry.path().filename();
-            std::string dirname = "/neura/src/edge_detection_ros_cpp/output/";
+            std::string dirname = "/src_dir/src/edge_detection_ros_cpp/output/";
             cv::imwrite(dirname + filename, cv_img);
 
         }

@@ -3,7 +3,7 @@ print(cv2.__path__)
 import numpy as np
 
 
-imPath = "/home/olorin/Desktop/Neura/edge_detection_ros_challenge/edge_detection_ros/edge_detection/data/Image_4.png"  # <----- image path
+imPath = ""  # <----- image path
 
 
 def imageResize(orgImage, resizeFact):

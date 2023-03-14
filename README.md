@@ -4,11 +4,12 @@ An edge detection module with a ros server and callbacks
 # Instructions:
 
 1. Create a catkin workspace, with an `src` directory, and clone this repository inside src. (Also copy the `robot` package as well, not included here in the repo.)
-2. Build a docker image from the `Dockerfile` in `scripts` directory.
-3. Docker run command used:
+2. Build a docker image from the `Dockerfile` in `scripts` directory with `docker build . -t ros_noetic_opencv:v1`.
+3. Go to the root directory of this repository.
+4. Docker run command used:
 
 ```
-docker run -it --net=host --gpus all --privileged=true --rm    --env="NVIDIA_DRIVER_CAPABILITIES=all"     --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"   --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --volume=$(pwd):/src   ros_noetic_opencv:v1     bash
+docker run -it --net=host --gpus all --privileged=true --rm    --env="NVIDIA_DRIVER_CAPABILITIES=all"     --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"   --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --volume=$(pwd):/src_dir   ros_noetic_opencv:v1     bash
 ```
 4. Run `catkin build`
 
