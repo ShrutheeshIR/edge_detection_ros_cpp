@@ -28,4 +28,4 @@ RUN echo 'export ROS_MASTER_URI=https://localhost:11311' >> /root/.bashrc
 RUN echo 'export ROS_HOSTNAME=localhost' >> /root/.bashrc
 
 RUN apt-get install -y libopencv-dev
-RUN apt-get install -y python3-catkin-tools
+RUN apt-get update && apt-get install -y python3-catkin-tools

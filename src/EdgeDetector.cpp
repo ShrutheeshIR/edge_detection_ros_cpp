@@ -73,15 +73,16 @@ void EdgeDetector::findEdges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_po
 		edge_points = valid_edge_points;
 		
 	}
+	cv::Mat dst_img;
 	if(params.show_debug_image)
-		display_edges(src_img, edge_points);
+		display_edges(src_img, edge_points, dst_img);
 	
 
 }
 
-void EdgeDetector::display_edges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_points)
+void EdgeDetector::display_edges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img)
 {
-	cv::Mat dst_img = src_img.clone();
+	dst_img = src_img.clone();
 	for(cv::Point2d edge_point: edge_points)
 	{
 		circle(dst_img, edge_point,1,CV_RGB(0,255,0),1);
