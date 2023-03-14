@@ -11,7 +11,8 @@ An edge detection module with a ros server and callbacks
 ```
 docker run -it --net=host --gpus all --privileged=true --rm    --env="NVIDIA_DRIVER_CAPABILITIES=all"     --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"   --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --volume=$(pwd):/src_dir   ros_noetic_opencv:v1     bash
 ```
-4. Run `catkin build`
+5. cd `<path to> catkin_ws`
+6. Run `catkin build`
 
 ## To run on a directory of images.
 
