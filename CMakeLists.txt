@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
+add_compile_options(-std=c++17)
 project(edge_detection)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -15,11 +16,14 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   roscpp
   geometry_msgs
+  message_filters
+  pcl_conversions
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(PCL REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -108,7 +112,7 @@ generate_messages(
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES ${PROJECT_NAME}
- CATKIN_DEPENDS geometry_msgs std_msgs
+ CATKIN_DEPENDS geometry_msgs std_msgs message_filters pcl_conversions
 #  DEPENDS ${OPENCV_PACKAGE}
 )
 
@@ -122,6 +126,8 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
+  ${BOOST_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
 )
 
 
@@ -160,6 +166,11 @@ target_link_libraries(edge_detection_service ${catkin_LIBRARIES} ${OpenCV_LIBS} 
 add_executable(edge_detection_service_client src/edge_detection_service_client.cpp )
 # target_include_directories(edge_detection_node PUBLIC ${INCLUDE_DIRECTORIES} )
 target_link_libraries(edge_detection_service_client ${catkin_LIBRARIES} ${OpenCV_LIBS} ${PROJECT_NAME} )
+
+
+add_executable(edge_detection_node src/edge_detection_node.cpp )
+# target_include_directories(edge_detection_node PUBLIC ${INCLUDE_DIRECTORIES} )
+target_link_libraries(edge_detection_node ${catkin_LIBRARIES} ${OpenCV_LIBS} ${PROJECT_NAME} ${BOOST_LIBS} )
 
 
 ## Add cmake target dependencies of the library

@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 // #include <eigen3/Eigen/Dense>
 #include <opencv2/imgproc/imgproc.hpp>
-
+#include <string>
 // using namespace Eigen;
 
 
@@ -42,6 +42,6 @@ class EdgeDetector
 		EdgeDetector(bool show_debug, LinesMethod line_detection_method);
 		void findEdges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_points);
 		void convertGrayscale(cv::Mat& src_img, cv::Mat& dst_img);
-		void display_edges(cv::Mat &src_img, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img);
+		void display_edges(cv::Mat &src_img, std::string filename, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img);
 };
 

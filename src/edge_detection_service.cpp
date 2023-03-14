@@ -9,20 +9,15 @@ EdgeDetectionService :: EdgeDetectionService()
 bool EdgeDetectionService::edge_detection(edge_detection::DetectEdges::Request &request, edge_detection::DetectEdges::Response &response)
 {
     cv_bridge::CvImagePtr cv_ptr;
-    cv_ptr = cv_bridge::toCvCopy(request.img, sensor_msgs::image_encodings::BGR8);
+    cv_ptr = cv_bridge::toCvCopy(request.img, sensor_msgs::image_encodings::RGB8);
     cv::Mat cv_img = cv::Mat(cv_ptr -> image);
     
     std::vector<cv::Point2d> edge_points;
     det->findEdges(cv_img, edge_points);
 
     cv::Mat dst_img;
-    det->display_edges(cv_img, edge_points, dst_img);
+    // det->display_edges(cv_img, "/neura/src/edge_detection_ros_cpp/output/edges.png", edge_points, dst_img);
 
-
-    cv_bridge::CvImage out_msg;
-    out_msg.header   = cv_ptr->header; // Same timestamp and tf frame as input image
-    out_msg.encoding = sensor_msgs::image_encodings::TYPE_32FC1; // Or whatever
-    out_msg.image    = dst_img; // Your cv::Mat
 
     geometry_msgs::Point pt;
     std::vector<geometry_msgs::Point> points;
@@ -34,7 +29,16 @@ bool EdgeDetectionService::edge_detection(edge_detection::DetectEdges::Request &
         points.push_back(pt);
     }
 
-    // response.edge_output.img = out_msg.toImageMsg();
+    cv_bridge::CvImage img_bridge;
+    sensor_msgs::Image img_msg; // >> message to be sent
+
+    std_msgs::Header header = cv_ptr->header; // empty header
+    header.stamp = ros::Time::now(); // time
+    img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::RGB8, dst_img);
+    img_bridge.toImageMsg(img_msg); // from cv_bridge to sensor_msgs::Image
+
+
+    response.edge_output.img = img_msg;
     response.edge_output.edges_2d = points;
 
     return true;
@@ -47,7 +51,7 @@ bool EdgeDetectionService::edge_detection(edge_detection::DetectEdges::Request &
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "Ros init");
+    ros::init(argc, argv, "RosInit");
     EdgeDetectionService node = EdgeDetectionService();
 //   ros::ServiceServer service = n.advertiseService("detect_edges", add);
     ROS_INFO("Server Setup!.");

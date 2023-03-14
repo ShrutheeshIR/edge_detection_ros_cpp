@@ -75,20 +75,20 @@ void EdgeDetector::findEdges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_po
 	}
 	cv::Mat dst_img;
 	if(params.show_debug_image)
-		display_edges(src_img, edge_points, dst_img);
+		display_edges(src_img, "/neura/src/edge_detection_ros_cpp/output/out_img.png", edge_points, dst_img);
 	
 
 }
 
-void EdgeDetector::display_edges(cv::Mat& src_img, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img)
+void EdgeDetector::display_edges(cv::Mat& src_img, std::string filename, std::vector<cv::Point2d>& edge_points, cv::Mat& dst_img)
 {
 	dst_img = src_img.clone();
 	for(cv::Point2d edge_point: edge_points)
 	{
 		circle(dst_img, edge_point,1,CV_RGB(0,255,0),1);
 
-	}
-	cv::imwrite("/home/olorin/Desktop/Neura/edge_detection_ros_challenge/edge_detection_ros/src/edge_detection/output/edges.png", dst_img);
+	}	
+	cv::imwrite(filename, dst_img);
 
 }
 
